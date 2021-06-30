@@ -83,9 +83,8 @@ def executeCommand(cmd):
 
 
 # Main code starts from here. 
-# field = cgi.FieldStorage()
-# command = field.getvalue("command")
-command = input()
+field = cgi.FieldStorage()
+command = field.getvalue("command")
 
 # There are two types of inputs which can be provided by the user. 
 if command[0].strip() == '1':

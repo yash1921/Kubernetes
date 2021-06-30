@@ -22,7 +22,7 @@
                     <li>
                         Get Resource
                         <input id="i1" type="text" placeholder="Resource">    
-                        <button onclick="kubeAjax('1 kubectl get ' +  printer('i1'));">Execute</button>
+                        <button onclick="kubeAjax('1 sudo kubectl get ' +  printer('i1'));">Execute</button>
                     </li>
 
                     <li>
@@ -79,10 +79,11 @@
                     <input id="sentnc" type="text" placeholder="What do you want? [Ex: Launch pod with name p1 using httpd image.]">
                     <button onclick="kubeAjax('2 '+ printer('sentnc'))">Output</button>
                 </div> 
-
+		<pre>
                 <div id="output" class="output">
-                    Hello Everyone!
+                Hello Everyone!
                 </div>
+		</pre>
             </div>
         </div>
 

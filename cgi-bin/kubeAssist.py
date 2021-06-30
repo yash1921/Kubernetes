@@ -79,16 +79,16 @@ def keywordExtract(sentence):
     return keywords
 
 def executeCommand(cmd):
-    return sb.getoutput(cmd)
+    return sb.getoutput('sudo ' + cmd + ' --kubeconfig=/home/prateek/.kube/config')
 
 
 # Main code starts from here. 
-field = cgi.FieldStorage()
+field = cgi.FieldStorage("command")
 command = field.getvalue("command")
 
 # There are two types of inputs which can be provided by the user. 
 if command[0].strip() == '1':
-    print("#" + command[1:] + "\n\n" + executeCommand(command[1:].strip()))
+    print("#" + command[1:] + "\n" + executeCommand(command[1:].strip()))
 elif command[0] == '2':
     keywords = keywordExtract(command[1:].strip())
     if keywords['command'] == 'scale':
@@ -100,4 +100,4 @@ elif command[0] == '2':
     else:
         cmd = 'kubectl {} {} {} {}}'.format(keywords['command'], keywords['resource'], keywords['name'], keywords['image']) 
     
-    print("#" + cmd + "\n\n" + executeCommand(cmd))
+    print("#" + cmd + "\n" + executeCommand(cmd))

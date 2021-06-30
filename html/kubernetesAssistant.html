@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<head> 
+    <title>KubeAssist</title>
+</head>
+<body>
+    <div id="navbar"></div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+    </script>
+    <script>
+
+        $(function(){
+            $('#navbar').load('navbar.html');
+        });
+    </script>
+    <link rel="stylesheet" href="css/kubeStyles.css" type="text/css">
+
+
+        <div id="container">
+            <div id="top_div">
+                <h3>Supported Features</h3>
+                <ol class="supported">
+                    <li>
+                        Get Resource
+                        <input id="i1" type="text" placeholder="Resource">    
+                        <button onclick="kubeAjax('1 kubectl get ' +  printer('i1'));">Execute</button>
+                    </li>
+
+                    <li>
+                        Describe Resource
+                        <input id="i2" type="text" placeholder="Resource">    
+                        <button onclick="kubeAjax('1 kubectl describe ' +  printer('i2'));">Execute</button>
+                    </li>
+
+                    <li>
+                        Launch Pod
+                        <input id="podName" type="text" placeholder="Pod Name">
+                        <input id="imageNamePod" type="text" placeholder="Image Name">
+                        <button onclick="kubeAjax('1 kubectl run ' +  printer('podName') + ' --image=' + printer('imageNamePod'));">Execute</button>
+                    </li>
+                    
+                    <li>
+                        Launch Deployment
+                        <input id="deploy" type="text" placeholder="Deployment Name">
+                        <input id="imageNameDeploy" type="text" placeholder="Image Name">
+                        <button onclick="kubeAjax('1 kubectl create deployment ' +  printer('deploy') +  ' --image=' + printer('imageNameDeploy'));">Execute</button>
+                    </li>
+
+                    <li>
+                        Expose Services
+                        <input id="resource" type="text" placeholder="Resource ">
+                        <input id="name" type="text" placeholder="Name">
+                        <input id="port" type="text" placeholder="Port">
+                        <button onclick="kubeAjax('1 kubectl expose ' +  printer('resource') + ' ' + printer('name') +' --port=' + printer('port') + ' --type=NodePort');">Execute</button>
+                    </li>
+
+                    <li>
+                        Scaling 
+                        <input id="scaleRes" type="text" placeholder="Resource ">
+                        <input id="scaleName" type="text" placeholder="Name">
+                        <input id="replicas" type="text" placeholder="Replica Count">
+                        <button onclick="kubeAjax('1 kubectl scale --replicas=' +  printer('replicas') + ' ' + printer('scaleRes') +'/' + printer('scaleName'));">Execute</button>
+                    </li>
+                    
+                    <li>
+                        Delete Resource
+                        <input id="delRes" type="text" placeholder="Resource">
+                        <input id="delName" type="text" placeholder="Name">
+                        <button onclick="kubeAjax('1 kubectl delete ' +  printer('delRes') + ' ' + printer('delName'));">Execute</button>
+                    </li>
+
+                    <li>
+                        Delete Complete Environment
+                        <button onclick="kubeAjax('1 kubectl delete all --all')">Execute</button>
+                    </li>
+                </ol> 
+            </div>
+            <div id="bottom_div" >
+                <div class="sentence">
+                    <input id="sentnc" type="text" placeholder="What do you want? [Ex: Launch pod with name p1 using httpd image.]">
+                    <button onclick="kubeAjax('2 '+ printer('sentnc'))">Output</button>
+                </div> 
+
+                <div id="output" class="output">
+                    Hello Everyone!
+                </div>
+            </div>
+        </div>
+
+</body>
